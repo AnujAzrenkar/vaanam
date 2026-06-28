@@ -43,10 +43,12 @@ class Enquiry(BaseModel):
 
 # ---- DB helpers -----------------------------------------------------------
 def _conn():
-    """Open a new connection. POSTGRES_URL is set in Vercel env vars."""
-    url = os.environ.get("POSTGRES_URL")
+    """Open a new connection. Vercel injects the connection string as an
+    env var when you connect a database — Neon uses DATABASE_URL, the older
+    Vercel Postgres used POSTGRES_URL. Accept whichever is present."""
+    url = os.environ.get("DATABASE_URL") or os.environ.get("POSTGRES_URL")
     if not url:
-        raise RuntimeError("POSTGRES_URL is not set")
+        raise RuntimeError("No database URL set (DATABASE_URL / POSTGRES_URL)")
     return psycopg.connect(url, connect_timeout=10)
 
 
