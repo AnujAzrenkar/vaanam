@@ -1,574 +1,1360 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaanam — A Luxury Ecofarm Stay in Dharbandora, Goa</title>
-<meta name="description" content="An unhurried farm sanctuary in Goa's forested interior, on the edge of the Mhadei wildlife belt. Eight cottages, a working spice farm, and the sound of the river.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --canopy:#1A2E22;
-    --moss:#0F1B14;
-    --clay:#B5703E;
-    --linen:#E8E2D4;
-    --sage:#7A8B6F;
-    --paper:#F5F2EA;
-    --canopy-rgb:26,46,34;
-    --serif:'Fraunces',Georgia,serif;
-    --sans:'Inter',system-ui,sans-serif;
-    --mx:clamp(20px,6vw,120px);
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--paper);
-    color:var(--canopy);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  ::selection{background:var(--clay);color:var(--paper)}
-  img{display:block;max-width:100%}
-  a{color:inherit;text-decoration:none}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaanam — A Luxury Ecofarm Stay in Dharbandora, Goa</title>
+  <meta name="description"
+    content="An unhurried farm sanctuary in Goa's forested interior, on the edge of the Mhadei wildlife belt. Eight cottages, a working spice farm, and the sound of the river.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --canopy: #1A2E22;
+      --moss: #0F1B14;
+      --clay: #B5703E;
+      --linen: #E8E2D4;
+      --sage: #7A8B6F;
+      --paper: #F5F2EA;
+      --canopy-rgb: 26, 46, 34;
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --mx: clamp(20px, 6vw, 120px);
+    }
 
-  .eyebrow{
-    font-family:var(--sans);
-    font-size:.72rem;
-    font-weight:500;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-  /* ---------- NAV ---------- */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px var(--mx);
-    transition:background .4s ease,padding .4s ease,color .4s ease;
-    color:var(--paper);
-    mix-blend-mode:normal;
-  }
-  header.scrolled{
-    background:var(--paper);
-    color:var(--canopy);
-    padding:14px var(--mx);
-    border-bottom:1px solid rgba(var(--canopy-rgb),.12);
-  }
-  .brand{font-family:var(--serif);font-size:1.5rem;letter-spacing:.04em;font-weight:400}
-  .brand span{font-style:italic;font-weight:300}
-  nav{display:flex;gap:36px;align-items:center}
-  nav a.navlink{font-size:.82rem;letter-spacing:.06em;position:relative;padding:4px 0}
-  nav a.navlink::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .3s ease}
-  nav a.navlink:hover::after{width:100%}
-  .nav-cta{
-    border:1px solid currentColor;border-radius:100px;
-    padding:9px 22px;font-size:.78rem;letter-spacing:.08em;
-    transition:background .3s,color .3s;
-  }
-  header.scrolled .nav-cta:hover{background:var(--canopy);color:var(--paper)}
-  header:not(.scrolled) .nav-cta:hover{background:var(--paper);color:var(--canopy)}
-  .menu-btn{display:none;background:none;border:none;color:inherit;cursor:pointer;font-size:.8rem;letter-spacing:.1em}
+    html {
+      scroll-behavior: smooth
+    }
 
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;min-height:100vh;
-    display:flex;align-items:flex-end;
-    padding:0 var(--mx) clamp(50px,8vh,90px);
-    color:var(--paper);
-    overflow:hidden;
-  }
-  .hero-bg{
-    position:absolute;inset:0;z-index:-2;
-    background:
-      radial-gradient(ellipse at 70% 20%, rgba(122,139,111,.25), transparent 55%),
-      linear-gradient(180deg,#243A2C 0%,#16281D 45%,#0C160F 100%);
-  }
-  .hero-bg::after{
-    content:"";position:absolute;inset:0;
-    background:
-      linear-gradient(transparent 60%, rgba(12,22,15,.85));
-  }
-  /* layered fronds */
-  .frond{position:absolute;bottom:-2px;opacity:.9;will-change:transform}
-  .frond svg{display:block}
-  .hero-grade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(12,22,15,.55),transparent 50%)}
-  .hero-inner{position:relative;z-index:2;max-width:920px}
-  .hero h1{
-    font-family:var(--serif);
-    font-weight:300;
-    font-size:clamp(2.8rem,8.5vw,7rem);
-    line-height:.98;
-    letter-spacing:-.01em;
-    margin:.4em 0 .5em;
-  }
-  .hero h1 em{font-style:italic;color:var(--clay);font-weight:400}
-  .hero-sub{
-    font-size:clamp(1rem,1.4vw,1.18rem);
-    font-weight:300;max-width:46ch;color:rgba(245,242,234,.85);
-    margin-bottom:2.4em;
-  }
-  .hero-actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-  .btn-primary{
-    background:var(--clay);color:var(--paper);
-    padding:15px 34px;border-radius:100px;
-    font-size:.85rem;letter-spacing:.06em;font-weight:500;
-    transition:transform .3s,background .3s;
-  }
-  .btn-primary:hover{transform:translateY(-2px);background:#a3622f}
-  .btn-ghost{
-    font-size:.85rem;letter-spacing:.06em;
-    border-bottom:1px solid currentColor;padding-bottom:3px;
-  }
-  /* hero side journal */
-  .journal{
-    position:absolute;top:50%;right:var(--mx);transform:translateY(-50%);
-    z-index:2;text-align:right;
-    font-size:.7rem;letter-spacing:.18em;line-height:2.4;
-    color:rgba(245,242,234,.6);
-  }
-  .journal .lat{font-family:var(--serif);font-style:italic;font-size:.95rem;letter-spacing:.04em;color:var(--paper)}
-  .scroll-cue{
-    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
-    z-index:3;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;
-    color:rgba(245,242,234,.6);display:flex;flex-direction:column;align-items:center;gap:10px;
-  }
-  .scroll-cue .line{width:1px;height:40px;background:linear-gradient(rgba(245,242,234,.6),transparent);animation:drop 2.2s infinite}
-  @keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--canopy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-  /* ---------- MARQUEE STRIP ---------- */
-  .strip{
-    background:var(--canopy);color:var(--linen);
-    padding:18px 0;overflow:hidden;white-space:nowrap;
-    border-top:1px solid rgba(232,226,212,.12);
-    border-bottom:1px solid rgba(232,226,212,.12);
-  }
-  .strip-track{display:inline-flex;gap:60px;animation:scroll 36s linear infinite;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:rgba(232,226,212,.85)}
-  .strip-track span{display:inline-flex;gap:60px;align-items:center}
-  .dot{width:5px;height:5px;border-radius:50%;background:var(--clay);display:inline-block}
-  @keyframes scroll{to{transform:translateX(-50%)}}
+    ::selection {
+      background: var(--clay);
+      color: var(--paper)
+    }
 
-  /* ---------- SECTION SHELL ---------- */
-  section{padding:clamp(70px,11vh,140px) var(--mx)}
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.in{opacity:1;transform:none}
+    img {
+      display: block;
+      max-width: 100%
+    }
 
-  /* ---------- INTRO / PHILOSOPHY ---------- */
-  .intro{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,7vw,110px);align-items:center}
-  .intro .label{display:flex;align-items:center;gap:14px;margin-bottom:28px}
-  .intro .label .rule{width:46px;height:1px;background:var(--clay)}
-  .intro h2{
-    font-family:var(--serif);font-weight:300;
-    font-size:clamp(1.9rem,3.6vw,3.3rem);line-height:1.12;letter-spacing:-.01em;
-  }
-  .intro h2 em{font-style:italic;color:var(--clay)}
-  .intro p{font-size:1.05rem;font-weight:300;color:rgba(var(--canopy-rgb),.82);margin-top:1.4em;max-width:52ch}
-  .intro-fig{position:relative}
-  .intro-fig .img-main{
-    aspect-ratio:4/5;border-radius:4px;overflow:hidden;
-    background:linear-gradient(160deg,#3a5440,#1f3326);
-  }
-  .intro-fig figcaption{
-    position:absolute;left:-30px;bottom:40px;background:var(--paper);
-    padding:18px 24px;border-radius:3px;box-shadow:0 20px 50px rgba(15,27,20,.18);
-    max-width:230px;
-  }
-  .intro-fig figcaption .n{font-family:var(--serif);font-size:2.4rem;line-height:1;color:var(--clay)}
-  .intro-fig figcaption .t{font-size:.78rem;letter-spacing:.05em;color:rgba(var(--canopy-rgb),.7);margin-top:6px}
+    a {
+      color: inherit;
+      text-decoration: none
+    }
 
-  /* photographic blocks rendered via CSS scene (no external imgs) */
-  .scene{position:relative;overflow:hidden}
-  .scene .sky{position:absolute;inset:0;background:linear-gradient(180deg,#cdd6c4,#9fb094 60%,#6e8466)}
-  .scene .canopy-layer{position:absolute;inset:0;background:radial-gradient(circle at 30% 120%, #2c4632 0 40%, transparent 70%),radial-gradient(circle at 80% 130%, #213a28 0 45%, transparent 72%)}
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
 
-  /* ---------- STAYS ---------- */
-  .stays-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:64px}
-  .stays-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4.5vw,4rem);line-height:1;letter-spacing:-.02em}
-  .stays-head h2 em{font-style:italic;color:var(--clay)}
-  .stays-head p{max-width:34ch;font-weight:300;color:rgba(var(--canopy-rgb),.7)}
-  .stay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-  .stay{
-    position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:3px;cursor:pointer;
-    color:var(--paper);
-  }
-  .stay .scene{position:absolute;inset:0;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
-  .stay .scene img{width:100%;height:100%;object-fit:cover}
-  .stay:hover .scene{transform:scale(1.06)}
-  .stay::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(12,22,15,.88));z-index:1}
-  .stay-info{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 28px;transition:transform .5s ease}
-  .stay-info .idx{font-size:.7rem;letter-spacing:.25em;opacity:.7}
-  .stay-info h3{font-family:var(--serif);font-weight:400;font-size:1.7rem;margin:8px 0 4px}
-  .stay-info .meta{font-size:.82rem;font-weight:300;opacity:.85}
-  .stay-info .price{margin-top:14px;font-size:.9rem;opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
-  .stay:hover .stay-info .price{opacity:1;transform:none}
-  .stay .price b{font-family:var(--serif);font-weight:500;color:var(--clay)}
-  /* individual scenes */
-  .sc-grove{background:linear-gradient(180deg,#7e9a78,#2c4632)}
-  .sc-river{background:linear-gradient(180deg,#9cb3ad,#274b46)}
-  .sc-canopy{background:linear-gradient(180deg,#5d7a52,#1c3322)}
-  .sc-grove::before,.sc-river::before,.sc-canopy::before{
-    content:"";position:absolute;inset:0;opacity:.45;
-    background:radial-gradient(circle at 20% 90%,rgba(15,27,20,.6),transparent 60%);
-  }
+    /* ---------- NAV ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px var(--mx);
+      transition: background .4s ease, padding .4s ease, color .4s ease;
+      color: var(--paper);
+      mix-blend-mode: normal;
+    }
 
-  /* ---------- EXPERIENCE / NUMBERED ---------- */
-  .exp{background:var(--canopy);color:var(--linen);margin:0;}
-  .exp .head{max-width:60ch;margin-bottom:64px}
-  .exp .head .eyebrow{color:var(--clay)}
-  .exp .head h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4vw,3.4rem);line-height:1.1;margin-top:18px;letter-spacing:-.01em}
-  .exp .head h2 em{font-style:italic;color:var(--sage)}
-  .exp-list{display:grid;gap:0}
-  .exp-row{
-    display:grid;grid-template-columns:90px 1fr 1fr;gap:40px;
-    padding:34px 0;border-top:1px solid rgba(232,226,212,.16);align-items:baseline;
-    transition:padding-left .4s ease;
-  }
-  .exp-row:last-child{border-bottom:1px solid rgba(232,226,212,.16)}
-  .exp-row:hover{padding-left:14px}
-  .exp-row .num{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--clay)}
-  .exp-row h4{font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.9rem)}
-  .exp-row p{font-weight:300;color:rgba(232,226,212,.72);font-size:.98rem}
+    header.scrolled {
+      background: var(--paper);
+      color: var(--canopy);
+      padding: 14px var(--mx);
+      border-bottom: 1px solid rgba(var(--canopy-rgb), .12);
+    }
 
-  /* ---------- LAND / SUSTAINABILITY ---------- */
-  .land{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
-  .land-fig{aspect-ratio:1/1;border-radius:4px;overflow:hidden;position:relative;background:linear-gradient(160deg,#3a5440,#16281d)}
-  .land-text .eyebrow{color:var(--clay)}
-  .land-text h2{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.12;margin:18px 0;letter-spacing:-.01em}
-  .land-text h2 em{font-style:italic;color:var(--clay)}
-  .land-text p{font-weight:300;color:rgba(var(--canopy-rgb),.82);max-width:50ch}
-  .land-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
-  .land-stats .s .n{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);color:var(--clay);line-height:1}
-  .land-stats .s .l{font-size:.78rem;letter-spacing:.05em;color:rgba(var(--canopy-rgb),.7);margin-top:8px}
+    .brand {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      letter-spacing: .04em;
+      font-weight: 400
+    }
 
-  /* ---------- TESTIMONIAL ---------- */
-  .quote{background:var(--linen);text-align:center}
-  .quote blockquote{
-    font-family:var(--serif);font-weight:300;font-style:italic;
-    font-size:clamp(1.5rem,3.4vw,2.8rem);line-height:1.32;letter-spacing:-.01em;
-    max-width:20ch;margin:0 auto;
-  }
-  .quote .stars{color:var(--clay);letter-spacing:.3em;margin-bottom:30px}
-  .quote .cite{margin-top:32px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(var(--canopy-rgb),.6)}
+    .brand span {
+      font-style: italic;
+      font-weight: 300
+    }
 
-  /* ---------- BOOK / CTA ---------- */
-  .book{position:relative;color:var(--paper);overflow:hidden;text-align:center}
-  .book-bg{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#1f3326,#0c160f)}
-  .book-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(122,139,111,.3),transparent 60%)}
-  .book .eyebrow{color:var(--clay)}
-  .book h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,5.5vw,4.6rem);line-height:1.05;margin:20px 0 14px;letter-spacing:-.01em}
-  .book h2 em{font-style:italic;color:var(--clay)}
-  .book p{font-weight:300;color:rgba(245,242,234,.8);max-width:48ch;margin:0 auto 40px}
-  /* enquiry form */
-  .enquiry{max-width:640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}
-  .enquiry .full{grid-column:1/-1}
-  .field label{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,242,234,.6);margin-bottom:8px}
-  .field input,.field select{
-    width:100%;background:transparent;border:none;border-bottom:1px solid rgba(245,242,234,.3);
-    color:var(--paper);padding:10px 0;font-family:var(--sans);font-size:1rem;outline:none;transition:border-color .3s;
-  }
-  .field input::placeholder{color:rgba(245,242,234,.4)}
-  .field select{color:rgba(245,242,234,.85)}
-  .field select option{background:#16281d}
-  .field input:focus,.field select:focus{border-color:var(--clay)}
-  .enquiry button{
-    grid-column:1/-1;margin-top:16px;background:var(--clay);color:var(--paper);border:none;
-    padding:16px;border-radius:100px;font-family:var(--sans);font-size:.88rem;letter-spacing:.08em;
-    font-weight:500;cursor:pointer;transition:transform .3s,background .3s;
-  }
-  .enquiry button:hover{transform:translateY(-2px);background:#a3622f}
-  .form-note{grid-column:1/-1;font-size:.78rem;color:rgba(245,242,234,.55);text-align:center;margin-top:8px}
+    nav {
+      display: flex;
+      gap: 36px;
+      align-items: center
+    }
 
-  /* ---------- FOOTER ---------- */
-  footer{background:var(--moss);color:rgba(245,242,234,.7);padding:80px var(--mx) 40px}
-  .foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:60px;border-bottom:1px solid rgba(245,242,234,.12)}
-  .foot-brand .brand{color:var(--paper);font-size:1.8rem;margin-bottom:18px}
-  .foot-brand p{font-weight:300;max-width:32ch;font-size:.92rem}
-  .foot-col h5{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:18px}
-  .foot-col a{display:block;font-size:.92rem;font-weight:300;margin-bottom:12px;transition:color .3s}
-  .foot-col a:hover{color:var(--paper)}
-  .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:30px;font-size:.8rem;font-weight:300}
-  .pilot-tag{font-size:.72rem;letter-spacing:.12em;color:var(--clay)}
+    nav a.navlink {
+      font-size: .82rem;
+      letter-spacing: .06em;
+      position: relative;
+      padding: 4px 0
+    }
 
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:900px){
-    nav{display:none}
-    .menu-btn{display:block}
-    .journal{display:none}
-    .intro{grid-template-columns:1fr;gap:50px}
-    .intro-fig figcaption{left:0}
-    .stay-grid{grid-template-columns:1fr}
-    .stay{aspect-ratio:16/11}
-    .exp-row{grid-template-columns:50px 1fr;gap:20px}
-    .exp-row p{grid-column:2}
-    .land{grid-template-columns:1fr}
-    .foot-top{grid-template-columns:1fr 1fr}
-    .enquiry{grid-template-columns:1fr}
-  }
-  @media(max-width:560px){
-    .foot-top{grid-template-columns:1fr}
-    .land-stats{grid-template-columns:1fr 1fr}
-    .stays-head{flex-direction:column;align-items:flex-start}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;scroll-behavior:auto}
-    .reveal{opacity:1;transform:none}
-  }
-</style>
+    nav a.navlink::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width .3s ease
+    }
+
+    nav a.navlink:hover::after {
+      width: 100%
+    }
+
+    .nav-cta {
+      border: 1px solid currentColor;
+      border-radius: 100px;
+      padding: 9px 22px;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      transition: background .3s, color .3s;
+    }
+
+    header.scrolled .nav-cta:hover {
+      background: var(--canopy);
+      color: var(--paper)
+    }
+
+    header:not(.scrolled) .nav-cta:hover {
+      background: var(--paper);
+      color: var(--canopy)
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-size: .8rem;
+      letter-spacing: .1em
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 var(--mx) clamp(50px, 8vh, 90px);
+      color: var(--paper);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 70% 20%, rgba(122, 139, 111, .25), transparent 55%),
+        linear-gradient(180deg, #243A2C 0%, #16281D 45%, #0C160F 100%);
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(transparent 60%, rgba(12, 22, 15, .85));
+    }
+
+    /* layered fronds */
+    .frond {
+      position: absolute;
+      bottom: -2px;
+      opacity: .9;
+      will-change: transform
+    }
+
+    .frond svg {
+      display: block
+    }
+
+    .hero-grade {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(12, 22, 15, .55), transparent 50%)
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 920px
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 8.5vw, 7rem);
+      line-height: .98;
+      letter-spacing: -.01em;
+      margin: .4em 0 .5em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--clay);
+      font-weight: 400
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.4vw, 1.18rem);
+      font-weight: 300;
+      max-width: 46ch;
+      color: rgba(245, 242, 234, .85);
+      margin-bottom: 2.4em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .btn-primary {
+      background: var(--clay);
+      color: var(--paper);
+      padding: 15px 34px;
+      border-radius: 100px;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      font-weight: 500;
+      transition: transform .3s, background .3s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #a3622f
+    }
+
+    .btn-ghost {
+      font-size: .85rem;
+      letter-spacing: .06em;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 3px;
+    }
+
+    /* hero side journal */
+    .journal {
+      position: absolute;
+      top: 50%;
+      right: var(--mx);
+      transform: translateY(-50%);
+      z-index: 2;
+      text-align: right;
+      font-size: .7rem;
+      letter-spacing: .18em;
+      line-height: 2.4;
+      color: rgba(245, 242, 234, .6);
+    }
+
+    .journal .lat {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: .95rem;
+      letter-spacing: .04em;
+      color: var(--paper)
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      font-size: .62rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 234, .6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-cue .line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(rgba(245, 242, 234, .6), transparent);
+      animation: drop 2.2s infinite
+    }
+
+    @keyframes drop {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top
+      }
+
+      51% {
+        transform-origin: bottom
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom
+      }
+    }
+
+    /* ---------- MARQUEE STRIP ---------- */
+    .strip {
+      background: var(--canopy);
+      color: var(--linen);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(232, 226, 212, .12);
+      border-bottom: 1px solid rgba(232, 226, 212, .12);
+    }
+
+    .strip-track {
+      display: inline-flex;
+      gap: 60px;
+      animation: scroll 36s linear infinite;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: rgba(232, 226, 212, .85)
+    }
+
+    .strip-track span {
+      display: inline-flex;
+      gap: 60px;
+      align-items: center
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--clay);
+      display: inline-block
+    }
+
+    @keyframes scroll {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section {
+      padding: clamp(70px, 11vh, 140px) var(--mx)
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s ease, transform .9s ease
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none
+    }
+
+    /* ---------- INTRO / PHILOSOPHY ---------- */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(40px, 7vw, 110px);
+      align-items: center
+    }
+
+    .intro .label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px
+    }
+
+    .intro .label .rule {
+      width: 46px;
+      height: 1px;
+      background: var(--clay)
+    }
+
+    .intro h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 3.6vw, 3.3rem);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+    }
+
+    .intro h2 em {
+      font-style: italic;
+      color: var(--clay)
+    }
+
+    .intro p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(var(--canopy-rgb), .82);
+      margin-top: 1.4em;
+      max-width: 52ch
+    }
+
+    .intro-fig {
+      position: relative
+    }
+
+    .intro-fig .img-main {
+      aspect-ratio: 4/5;
+      border-radius: 4px;
+      overflow: hidden;
+      background: linear-gradient(160deg, #3a5440, #1f3326);
+    }
+
+    .intro-fig figcaption {
+      position: absolute;
+      left: -30px;
+      bottom: 40px;
+      background: var(--paper);
+      padding: 18px 24px;
+      border-radius: 3px;
+      box-shadow: 0 20px 50px rgba(15, 27, 20, .18);
+      max-width: 230px;
+    }
+
+    .intro-fig figcaption .n {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--clay)
+    }
+
+    .intro-fig figcaption .t {
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: rgba(var(--canopy-rgb), .7);
+      margin-top: 6px
+    }
+
+    /* photographic blocks rendered via CSS scene (no external imgs) */
+    .scene {
+      position: relative;
+      overflow: hidden
+    }
+
+    .scene .sky {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #cdd6c4, #9fb094 60%, #6e8466)
+    }
+
+    .scene .canopy-layer {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 120%, #2c4632 0 40%, transparent 70%), radial-gradient(circle at 80% 130%, #213a28 0 45%, transparent 72%)
+    }
+
+    /* ---------- STAYS ---------- */
+    .stays-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 64px
+    }
+
+    .stays-head h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -.02em
+    }
+
+    .stays-head h2 em {
+      font-style: italic;
+      color: var(--clay)
+    }
+
+    .stays-head p {
+      max-width: 34ch;
+      font-weight: 300;
+      color: rgba(var(--canopy-rgb), .7)
+    }
+
+    .stay-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px
+    }
+
+    .stay {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      border-radius: 3px;
+      cursor: pointer;
+      color: var(--paper);
+    }
+
+    .stay .scene {
+      position: absolute;
+      inset: 0;
+      transition: transform 1.1s cubic-bezier(.2, .8, .2, 1)
+    }
+
+    .stay .scene img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .stay:hover .scene {
+      transform: scale(1.06)
+    }
+
+    .stay::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 35%, rgba(12, 22, 15, .88));
+      z-index: 1
+    }
+
+    .stay-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      padding: 30px 28px;
+      transition: transform .5s ease
+    }
+
+    .stay-info .idx {
+      font-size: .7rem;
+      letter-spacing: .25em;
+      opacity: .7
+    }
+
+    .stay-info h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.7rem;
+      margin: 8px 0 4px
+    }
+
+    .stay-info .meta {
+      font-size: .82rem;
+      font-weight: 300;
+      opacity: .85
+    }
+
+    .stay-info .price {
+      margin-top: 14px;
+      font-size: .9rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .4s, transform .4s
+    }
+
+    .stay:hover .stay-info .price {
+      opacity: 1;
+      transform: none
+    }
+
+    .stay .price b {
+      font-family: var(--serif);
+      font-weight: 500;
+      color: var(--clay)
+    }
+
+    /* individual scenes */
+    .sc-grove {
+      background: linear-gradient(180deg, #7e9a78, #2c4632)
+    }
+
+    .sc-river {
+      background: linear-gradient(180deg, #9cb3ad, #274b46)
+    }
+
+    .sc-canopy {
+      background: linear-gradient(180deg, #5d7a52, #1c3322)
+    }
+
+    .sc-grove::before,
+    .sc-river::before,
+    .sc-canopy::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .45;
+      background: radial-gradient(circle at 20% 90%, rgba(15, 27, 20, .6), transparent 60%);
+    }
+
+    /* ---------- EXPERIENCE / NUMBERED ---------- */
+    .exp {
+      background: var(--canopy);
+      color: var(--linen);
+      margin: 0;
+    }
+
+    .exp .head {
+      max-width: 60ch;
+      margin-bottom: 64px
+    }
+
+    .exp .head .eyebrow {
+      color: var(--clay)
+    }
+
+    .exp .head h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin-top: 18px;
+      letter-spacing: -.01em
+    }
+
+    .exp .head h2 em {
+      font-style: italic;
+      color: var(--sage)
+    }
+
+    .exp-list {
+      display: grid;
+      gap: 0
+    }
+
+    .exp-row {
+      display: grid;
+      grid-template-columns: 90px 1fr 1fr;
+      gap: 40px;
+      padding: 34px 0;
+      border-top: 1px solid rgba(232, 226, 212, .16);
+      align-items: baseline;
+      transition: padding-left .4s ease;
+    }
+
+    .exp-row:last-child {
+      border-bottom: 1px solid rgba(232, 226, 212, .16)
+    }
+
+    .exp-row:hover {
+      padding-left: 14px
+    }
+
+    .exp-row .num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--clay)
+    }
+
+    .exp-row h4 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem)
+    }
+
+    .exp-row p {
+      font-weight: 300;
+      color: rgba(232, 226, 212, .72);
+      font-size: .98rem
+    }
+
+    /* ---------- LAND / SUSTAINABILITY ---------- */
+    .land {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: center
+    }
+
+    .land-fig {
+      aspect-ratio: 1/1;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(160deg, #3a5440, #16281d)
+    }
+
+    .land-text .eyebrow {
+      color: var(--clay)
+    }
+
+    .land-text h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+      line-height: 1.12;
+      margin: 18px 0;
+      letter-spacing: -.01em
+    }
+
+    .land-text h2 em {
+      font-style: italic;
+      color: var(--clay)
+    }
+
+    .land-text p {
+      font-weight: 300;
+      color: rgba(var(--canopy-rgb), .82);
+      max-width: 50ch
+    }
+
+    .land-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px
+    }
+
+    .land-stats .s .n {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--clay);
+      line-height: 1
+    }
+
+    .land-stats .s .l {
+      font-size: .78rem;
+      letter-spacing: .05em;
+      color: rgba(var(--canopy-rgb), .7);
+      margin-top: 8px
+    }
+
+    /* ---------- TESTIMONIAL ---------- */
+    .quote {
+      background: var(--linen);
+      text-align: center
+    }
+
+    .quote blockquote {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.5rem, 3.4vw, 2.8rem);
+      line-height: 1.32;
+      letter-spacing: -.01em;
+      max-width: 20ch;
+      margin: 0 auto;
+    }
+
+    .quote .stars {
+      color: var(--clay);
+      letter-spacing: .3em;
+      margin-bottom: 30px
+    }
+
+    .quote .cite {
+      margin-top: 32px;
+      font-size: .82rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(var(--canopy-rgb), .6)
+    }
+
+    /* ---------- BOOK / CTA ---------- */
+    .book {
+      position: relative;
+      color: var(--paper);
+      overflow: hidden;
+      text-align: center
+    }
+
+    .book-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, #1f3326, #0c160f)
+    }
+
+    .book-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(122, 139, 111, .3), transparent 60%)
+    }
+
+    .book .eyebrow {
+      color: var(--clay)
+    }
+
+    .book h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5.5vw, 4.6rem);
+      line-height: 1.05;
+      margin: 20px 0 14px;
+      letter-spacing: -.01em
+    }
+
+    .book h2 em {
+      font-style: italic;
+      color: var(--clay)
+    }
+
+    .book p {
+      font-weight: 300;
+      color: rgba(245, 242, 234, .8);
+      max-width: 48ch;
+      margin: 0 auto 40px
+    }
+
+    /* enquiry form */
+    .enquiry {
+      max-width: 640px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left
+    }
+
+    .enquiry .full {
+      grid-column: 1/-1
+    }
+
+    .field label {
+      display: block;
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 234, .6);
+      margin-bottom: 8px
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(245, 242, 234, .3);
+      color: var(--paper);
+      padding: 10px 0;
+      font-family: var(--sans);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .3s;
+    }
+
+    .field input::placeholder {
+      color: rgba(245, 242, 234, .4)
+    }
+
+    .field select {
+      color: rgba(245, 242, 234, .85)
+    }
+
+    .field select option {
+      background: #16281d
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--clay)
+    }
+
+    .enquiry button {
+      grid-column: 1/-1;
+      margin-top: 16px;
+      background: var(--clay);
+      color: var(--paper);
+      border: none;
+      padding: 16px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: .88rem;
+      letter-spacing: .08em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: transform .3s, background .3s;
+    }
+
+    .enquiry button:hover {
+      transform: translateY(-2px);
+      background: #a3622f
+    }
+
+    .form-note {
+      grid-column: 1/-1;
+      font-size: .78rem;
+      color: rgba(245, 242, 234, .55);
+      text-align: center;
+      margin-top: 8px
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: var(--moss);
+      color: rgba(245, 242, 234, .7);
+      padding: 80px var(--mx) 40px
+    }
+
+    .foot-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(245, 242, 234, .12)
+    }
+
+    .foot-brand .brand {
+      color: var(--paper);
+      font-size: 1.8rem;
+      margin-bottom: 18px
+    }
+
+    .foot-brand p {
+      font-weight: 300;
+      max-width: 32ch;
+      font-size: .92rem
+    }
+
+    .foot-col h5 {
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 18px
+    }
+
+    .foot-col a {
+      display: block;
+      font-size: .92rem;
+      font-weight: 300;
+      margin-bottom: 12px;
+      transition: color .3s
+    }
+
+    .foot-col a:hover {
+      color: var(--paper)
+    }
+
+    .foot-bot {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 30px;
+      font-size: .8rem;
+      font-weight: 300
+    }
+
+    .pilot-tag {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      color: var(--clay)
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media(max-width:900px) {
+      nav {
+        display: none
+      }
+
+      .menu-btn {
+        display: block
+      }
+
+      .journal {
+        display: none
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        gap: 50px
+      }
+
+      .intro-fig figcaption {
+        left: 0
+      }
+
+      .stay-grid {
+        grid-template-columns: 1fr
+      }
+
+      .stay {
+        aspect-ratio: 16/11
+      }
+
+      .exp-row {
+        grid-template-columns: 50px 1fr;
+        gap: 20px
+      }
+
+      .exp-row p {
+        grid-column: 2
+      }
+
+      .land {
+        grid-template-columns: 1fr
+      }
+
+      .foot-top {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .enquiry {
+        grid-template-columns: 1fr
+      }
+    }
+
+    @media(max-width:560px) {
+      .foot-top {
+        grid-template-columns: 1fr
+      }
+
+      .land-stats {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .stays-head {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation: none !important;
+        scroll-behavior: auto
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header id="hdr">
-  <div class="brand">Vaanam <span>Goa</span></div>
-  <nav>
-    <a class="navlink" href="#land">The Land</a>
-    <a class="navlink" href="#stays">Stays</a>
-    <a class="navlink" href="#experience">Days Here</a>
-    <a class="navlink" href="#farm">The Farm</a>
-    <a class="nav-cta" href="#book">Enquire</a>
-  </nav>
-  <button class="menu-btn" onclick="document.querySelector('nav').scrollIntoView()">Menu</button>
-</header>
+  <header id="hdr">
+    <div class="brand">Vaanam <span>Goa</span></div>
+    <nav>
+      <a class="navlink" href="#land">The Land</a>
+      <a class="navlink" href="#stays">Stays</a>
+      <a class="navlink" href="#experience">Days Here</a>
+      <a class="navlink" href="#farm">The Farm</a>
+      <a class="nav-cta" href="#book">Enquire</a>
+    </nav>
+    <button class="menu-btn" onclick="document.querySelector('nav').scrollIntoView()">Menu</button>
+  </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-grade"></div>
-  <!-- layered fronds for depth -->
-  <div class="frond" data-depth="0.08" style="left:-4%;width:42vw;opacity:.55">
-    <svg viewBox="0 0 400 300" fill="none"><path d="M200 300C200 200 120 160 40 150C140 120 180 60 200 0C220 60 260 120 360 150C280 160 200 200 200 300Z" fill="#16281d"/></svg>
-  </div>
-  <div class="frond" data-depth="0.16" style="right:-6%;width:50vw;opacity:.7">
-    <svg viewBox="0 0 400 300" fill="none"><path d="M200 300C200 190 110 150 20 140C130 110 175 50 200 0C225 50 270 110 380 140C290 150 200 190 200 300Z" fill="#0c160f"/></svg>
-  </div>
-  <div class="hero-inner">
-    <span class="eyebrow" style="color:var(--clay)">Dharbandora · Goa's forested interior</span>
-    <h1>Where the forest <em>keeps</em> the hours</h1>
-    <p class="hero-sub">A working spice farm and eight cottages on the edge of the Mhadei wildlife belt — for travellers who came to Goa to slow down, not speed up.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#book">Plan your stay</a>
-      <a class="btn-ghost" href="#stays">See the cottages</a>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-grade"></div>
+    <!-- layered fronds for depth -->
+    <div class="frond" data-depth="0.08" style="left:-4%;width:42vw;opacity:.55">
+      <svg viewBox="0 0 400 300" fill="none">
+        <path d="M200 300C200 200 120 160 40 150C140 120 180 60 200 0C220 60 260 120 360 150C280 160 200 200 200 300Z"
+          fill="#16281d" />
+      </svg>
     </div>
-  </div>
-  <div class="journal">
-    <div class="lat">15.42° N</div>
-    <div>74.13° E</div>
-    <div style="margin-top:24px">PILOT SEASON</div>
-    <div>EST. 2026</div>
-  </div>
-  <div class="scroll-cue"><span>Wander in</span><span class="line"></span></div>
-</section>
-
-<!-- MARQUEE -->
-<div class="strip">
-  <div class="strip-track">
-    <span>Spring fed river <i class="dot"></i> Wild pepper &amp; nutmeg <i class="dot"></i> Sanctuary birdsong <i class="dot"></i> Open-fire kitchen <i class="dot"></i> No televisions <i class="dot"></i> Forty acres <i class="dot"></i></span>
-    <span>Spring fed river <i class="dot"></i> Wild pepper &amp; nutmeg <i class="dot"></i> Sanctuary birdsong <i class="dot"></i> Open-fire kitchen <i class="dot"></i> No televisions <i class="dot"></i> Forty acres <i class="dot"></i></span>
-  </div>
-</div>
-
-<!-- INTRO -->
-<section class="intro" id="land">
-  <div class="reveal">
-    <div class="label"><span class="rule"></span><span class="eyebrow" style="color:var(--clay)">The idea</span></div>
-    <h2>Not a resort built beside nature. A farm you are <em>invited into.</em></h2>
-    <p>Dharbandora sits in Goa's quiet east, where the plains give way to the Western Ghats and the Mhadei river begins its run. There are no beaches here — there are leopard corridors, betel groves, and mornings that smell of wet laterite and cardamom.</p>
-    <p>Vaanam is forty acres of that. We farm pepper, nutmeg and areca the way the land asks for, and we kept just eight cottages so the place never fills with noise.</p>
-  </div>
-  <figure class="intro-fig reveal">
-    <div class="img-main scene"><div class="sky" style="opacity:.5"></div><div class="canopy-layer"></div></div>
-    <figcaption>
-      <div class="n">40</div>
-      <div class="t">acres of working spice farm and standing forest — eight cottages, the rest left wild.</div>
-    </figcaption>
-  </figure>
-</section>
-
-<!-- STAYS -->
-<section class="stays" id="stays">
-  <div class="stays-head reveal">
-    <div>
-      <span class="eyebrow" style="color:var(--clay)">The cottages</span>
-      <h2 style="margin-top:14px">Eight rooms,<br><em>each its own clearing</em></h2>
+    <div class="frond" data-depth="0.16" style="right:-6%;width:50vw;opacity:.7">
+      <svg viewBox="0 0 400 300" fill="none">
+        <path d="M200 300C200 190 110 150 20 140C130 110 175 50 200 0C225 50 270 110 380 140C290 150 200 190 200 300Z"
+          fill="#0c160f" />
+      </svg>
     </div>
-    <p>Laterite walls, deep verandahs and outdoor showers. Built low so the canopy stays the tallest thing on the farm.</p>
-  </div>
-  <div class="stay-grid">
-    <article class="stay reveal">
-      <div class="scene sc-grove"><img loading="lazy" alt="Cottage verandah looking into a pepper grove" src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=900&q=70"></div>
-      <div class="stay-info">
-        <div class="idx">01 — Grove Cottage</div>
-        <h3>Pepper Grove</h3>
-        <div class="meta">King bed · private verandah · 650 sq ft</div>
-        <div class="price">from <b>₹18,500</b> / night</div>
+    <div class="hero-inner">
+      <span class="eyebrow" style="color:var(--clay)">Dharbandora · Goa's forested interior</span>
+      <h1>Where the forest <em>sets</em> the pace</h1>
+      <p class="hero-sub">A working spice farm and eight cottages on the edge of the Mhadei wildlife belt — for
+        travellers who came to Goa to slow down, not speed up.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#book">Plan your stay</a>
+        <a class="btn-ghost" href="#stays">See the cottages</a>
       </div>
-    </article>
-    <article class="stay reveal">
-      <div class="scene sc-river"><img loading="lazy" alt="Cottage beside a forest stream" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=70"></div>
-      <div class="stay-info">
-        <div class="idx">02 — Water's Edge</div>
-        <h3>River Cottage</h3>
-        <div class="meta">King bed · plunge pool · 820 sq ft</div>
-        <div class="price">from <b>₹26,000</b> / night</div>
+    </div>
+    <div class="journal">
+      <div class="lat">15.42° N</div>
+      <div>74.13° E</div>
+      <div style="margin-top:24px">PILOT SEASON</div>
+      <div>EST. 2026</div>
+    </div>
+    <div class="scroll-cue"><span>Wander in</span><span class="line"></span></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="strip">
+    <div class="strip-track">
+      <span>Spring fed river <i class="dot"></i> Wild pepper &amp; nutmeg <i class="dot"></i> Sanctuary birdsong <i
+          class="dot"></i> Open-fire kitchen <i class="dot"></i> No televisions <i class="dot"></i> Forty acres <i
+          class="dot"></i></span>
+      <span>Spring fed river <i class="dot"></i> Wild pepper &amp; nutmeg <i class="dot"></i> Sanctuary birdsong <i
+          class="dot"></i> Open-fire kitchen <i class="dot"></i> No televisions <i class="dot"></i> Forty acres <i
+          class="dot"></i></span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro" id="land">
+    <div class="reveal">
+      <div class="label"><span class="rule"></span><span class="eyebrow" style="color:var(--clay)">The idea</span></div>
+      <h2>Not a resort built beside nature. A farm you are <em>invited into.</em></h2>
+      <p>Dharbandora sits in Goa's quiet east, where the plains give way to the Western Ghats and the Mhadei river
+        begins its run. There are no beaches here — there are leopard corridors, betel groves, and mornings that smell
+        of wet laterite and cardamom.</p>
+      <p>Vaanam is forty acres of that. We farm pepper, nutmeg and areca the way the land asks for, and we kept just
+        eight cottages so the place never fills with noise.</p>
+    </div>
+    <figure class="intro-fig reveal">
+      <div class="img-main scene">
+        <div class="sky" style="opacity:.5"></div>
+        <div class="canopy-layer"></div>
       </div>
-    </article>
-    <article class="stay reveal">
-      <div class="scene sc-canopy"><img loading="lazy" alt="Treetop deck above the forest canopy" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=70"></div>
-      <div class="stay-info">
-        <div class="idx">03 — The Tree House</div>
-        <h3>Canopy Suite</h3>
-        <div class="meta">Loft bed · open deck · 940 sq ft</div>
-        <div class="price">from <b>₹32,000</b> / night</div>
+      <figcaption>
+        <div class="n">40</div>
+        <div class="t">acres of working spice farm and standing forest — eight cottages, the rest left wild.</div>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- STAYS -->
+  <section class="stays" id="stays">
+    <div class="stays-head reveal">
+      <div>
+        <span class="eyebrow" style="color:var(--clay)">The cottages</span>
+        <h2 style="margin-top:14px">Eight rooms,<br><em>each its own clearing</em></h2>
       </div>
-    </article>
-  </div>
-</section>
+      <p>Laterite walls, deep verandahs and outdoor showers. Built low so the canopy stays the tallest thing on the
+        farm.</p>
+    </div>
+    <div class="stay-grid">
+      <article class="stay reveal">
+        <div class="scene sc-grove"><img loading="lazy" alt="Cottage verandah looking into a pepper grove"
+            src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=900&q=70"></div>
+        <div class="stay-info">
+          <div class="idx">01 — Grove Cottage</div>
+          <h3>Pepper Grove</h3>
+          <div class="meta">King bed · private verandah · 650 sq ft</div>
+          <div class="price">from <b>₹18,500</b> / night</div>
+        </div>
+      </article>
+      <article class="stay reveal">
+        <div class="scene sc-river"><img loading="lazy" alt="Cottage beside a forest stream"
+            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=70"></div>
+        <div class="stay-info">
+          <div class="idx">02 — Water's Edge</div>
+          <h3>River Cottage</h3>
+          <div class="meta">King bed · plunge pool · 820 sq ft</div>
+          <div class="price">from <b>₹26,000</b> / night</div>
+        </div>
+      </article>
+      <article class="stay reveal">
+        <div class="scene sc-canopy"><img loading="lazy" alt="Treetop deck above the forest canopy"
+            src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=70"></div>
+        <div class="stay-info">
+          <div class="idx">03 — The Tree House</div>
+          <h3>Canopy Suite</h3>
+          <div class="meta">Loft bed · open deck · 940 sq ft</div>
+          <div class="price">from <b>₹32,000</b> / night</div>
+        </div>
+      </article>
+    </div>
+  </section>
 
-<!-- EXPERIENCE -->
-<section class="exp" id="experience">
-  <div class="head reveal">
-    <span class="eyebrow">A day, roughly</span>
-    <h2>We don't schedule your stay.<br>But <em>this</em> is how the hours tend to go.</h2>
-  </div>
-  <div class="exp-list">
-    <div class="exp-row reveal">
-      <div class="num">i.</div>
-      <h4>Dawn on the river</h4>
-      <p>Coffee carried to your verandah before the mist lifts. The Mhadei runs cold and clear past the lower field — most guests walk to it barefoot.</p>
+  <!-- EXPERIENCE -->
+  <section class="exp" id="experience">
+    <div class="head reveal">
+      <span class="eyebrow">A day, roughly</span>
+      <h2>We don't schedule your stay.<br>But <em>this</em> is how the hours tend to go.</h2>
     </div>
-    <div class="exp-row reveal">
-      <div class="num">ii.</div>
-      <h4>Walk the spice rows</h4>
-      <p>Our farmer Mahesh will show you where the pepper climbs and the nutmeg falls. You'll leave knowing how a single vine perfumes an entire acre.</p>
+    <div class="exp-list">
+      <div class="exp-row reveal">
+        <div class="num">i.</div>
+        <h4>Dawn on the river</h4>
+        <p>Coffee carried to your verandah before the mist lifts. The Mhadei runs cold and clear past the lower field —
+          most guests walk to it barefoot.</p>
+      </div>
+      <div class="exp-row reveal">
+        <div class="num">ii.</div>
+        <h4>Walk the spice rows</h4>
+        <p>Our farmer Mahesh will show you where the pepper climbs and the nutmeg falls. You'll leave knowing how a
+          single vine perfumes an entire acre.</p>
+      </div>
+      <div class="exp-row reveal">
+        <div class="num">iii.</div>
+        <h4>Lunch from the fire</h4>
+        <p>Goan-Saraswat cooking over open flame — kokum, coconut, and whatever the morning's foraging brought back.
+          Long tables, slow plates.</p>
+      </div>
+      <div class="exp-row reveal">
+        <div class="num">iv.</div>
+        <h4>The sanctuary at dusk</h4>
+        <p>A guided amble to the Mhadei boundary, when the hornbills cross and the forest gets loud. Back before dark,
+          by lantern light.</p>
+      </div>
     </div>
-    <div class="exp-row reveal">
-      <div class="num">iii.</div>
-      <h4>Lunch from the fire</h4>
-      <p>Goan-Saraswat cooking over open flame — kokum, coconut, and whatever the morning's foraging brought back. Long tables, slow plates.</p>
-    </div>
-    <div class="exp-row reveal">
-      <div class="num">iv.</div>
-      <h4>The sanctuary at dusk</h4>
-      <p>A guided amble to the Mhadei boundary, when the hornbills cross and the forest gets loud. Back before dark, by lantern light.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- LAND / FARM -->
-<section class="land" id="farm">
-  <figure class="land-fig reveal scene">
-    <div class="sky" style="opacity:.4"></div><div class="canopy-layer"></div>
-  </figure>
-  <div class="land-text reveal">
-    <span class="eyebrow">Why eco, honestly</span>
-    <h2>The farm came first. We just <em>made room for you.</em></h2>
-    <p>Everything here runs on what the land already gives. Solar through the dry months, spring-fed water, greywater back to the groves, and a kitchen that buys nothing it can grow. It isn't a marketing line — it's the only way forty acres of forest stays forty acres of forest.</p>
-    <div class="land-stats">
-      <div class="s"><div class="n">100%</div><div class="l">Solar &amp; spring powered</div></div>
-      <div class="s"><div class="n">Zero</div><div class="l">Single-use plastic on site</div></div>
-      <div class="s"><div class="n">8 of 40</div><div class="l">Acres built on — rest left wild</div></div>
+  <!-- LAND / FARM -->
+  <section class="land" id="farm">
+    <figure class="land-fig reveal scene">
+      <div class="sky" style="opacity:.4"></div>
+      <div class="canopy-layer"></div>
+    </figure>
+    <div class="land-text reveal">
+      <span class="eyebrow">Why eco, honestly</span>
+      <h2>The farm came first. We just <em>made room for you.</em></h2>
+      <p>Everything here runs on what the land already gives. Solar through the dry months, spring-fed water, greywater
+        back to the groves, and a kitchen that buys nothing it can grow. It isn't a marketing line — it's the only way
+        forty acres of forest stays forty acres of forest.</p>
+      <div class="land-stats">
+        <div class="s">
+          <div class="n">100%</div>
+          <div class="l">Solar &amp; spring powered</div>
+        </div>
+        <div class="s">
+          <div class="n">Zero</div>
+          <div class="l">Single-use plastic on site</div>
+        </div>
+        <div class="s">
+          <div class="n">8 of 40</div>
+          <div class="l">Acres built on — rest left wild</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- QUOTE -->
-<section class="quote">
-  <div class="reveal">
-    <div class="stars">★★★★★</div>
-    <blockquote>We came for three nights and rebooked from the verandah. You forget Goa even has a coast.</blockquote>
-    <div class="cite">Pilot guest · February 2026</div>
-  </div>
-</section>
-
-<!-- BOOK -->
-<section class="book" id="book">
-  <div class="book-bg"></div>
-  <div class="reveal">
-    <span class="eyebrow">Pilot season · limited stays</span>
-    <h2>Come see it <em>before everyone does</em></h2>
-    <p>We're opening a small number of stays this first season. Tell us when you'd like to come and we'll write back personally within a day.</p>
-  </div>
-  <form class="enquiry reveal" onsubmit="return handleEnquiry(event)">
-    <div class="field"><label for="nm">Name</label><input id="nm" required placeholder="Your name"></div>
-    <div class="field"><label for="em">Email</label><input id="em" type="email" required placeholder="you@email.com"></div>
-    <div class="field"><label for="dt">Preferred dates</label><input id="dt" placeholder="e.g. 12–15 Dec"></div>
-    <div class="field"><label for="cg">Cottage</label>
-      <select id="cg">
-        <option>No preference</option>
-        <option>Pepper Grove</option>
-        <option>River Cottage</option>
-        <option>Canopy Suite</option>
-      </select>
+  <!-- QUOTE -->
+  <section class="quote">
+    <div class="reveal">
+      <div class="stars">★★★★★</div>
+      <blockquote>We came for three nights and rebooked from the verandah. You forget Goa even has a coast.</blockquote>
+      <div class="cite">Pilot guest · February 2026</div>
     </div>
-    <div class="field full"><label for="ms">Anything we should know</label><input id="ms" placeholder="Travelling with family, anniversary, dietary notes…"></div>
-    <button type="submit">Send enquiry</button>
-    <div class="form-note" id="fnote">We reply by hand — usually within 24 hours.</div>
-  </form>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-top">
-    <div class="foot-brand">
-      <div class="brand">Vaanam <span>Goa</span></div>
-      <p>A luxury ecofarm stay in Dharbandora, on the edge of Goa's Mhadei wildlife belt.</p>
+  <!-- BOOK -->
+  <section class="book" id="book">
+    <div class="book-bg"></div>
+    <div class="reveal">
+      <span class="eyebrow">Pilot season · limited stays</span>
+      <h2>Come see it <em>before everyone does</em></h2>
+      <p>We're opening a small number of stays this first season. Tell us when you'd like to come and we'll write back
+        personally within a day.</p>
     </div>
-    <div class="foot-col">
-      <h5>Visit</h5>
-      <a href="#land">The Land</a>
-      <a href="#stays">Cottages</a>
-      <a href="#experience">A Day Here</a>
-      <a href="#farm">The Farm</a>
+    <form class="enquiry reveal" onsubmit="return handleEnquiry(event)">
+      <div class="field"><label for="nm">Name</label><input id="nm" required placeholder="Your name"></div>
+      <div class="field"><label for="em">Email</label><input id="em" type="email" required placeholder="you@email.com">
+      </div>
+      <div class="field"><label for="dt">Preferred dates</label><input id="dt" placeholder="e.g. 12–15 Dec"></div>
+      <div class="field"><label for="cg">Cottage</label>
+        <select id="cg">
+          <option>No preference</option>
+          <option>Pepper Grove</option>
+          <option>River Cottage</option>
+          <option>Canopy Suite</option>
+        </select>
+      </div>
+      <div class="field full"><label for="ms">Anything we should know</label><input id="ms"
+          placeholder="Travelling with family, anniversary, dietary notes…"></div>
+      <button type="submit">Send enquiry</button>
+      <div class="form-note" id="fnote">We reply by hand — usually within 24 hours.</div>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="brand">Vaanam <span>Goa</span></div>
+        <p>A luxury ecofarm stay in Dharbandora, on the edge of Goa's Mhadei wildlife belt.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <a href="#land">The Land</a>
+        <a href="#stays">Cottages</a>
+        <a href="#experience">A Day Here</a>
+        <a href="#farm">The Farm</a>
+      </div>
+      <div class="foot-col">
+        <h5>Reach us</h5>
+        <a href="mailto:stay@vaanamgoa.com">stay@vaanamgoa.com</a>
+        <a href="tel:+918000000000">+91 80000 00000</a>
+        <a href="#book">Enquire to stay</a>
+      </div>
+      <div class="foot-col">
+        <h5>Find us</h5>
+        <a href="#">Dharbandora, Goa</a>
+        <a href="#">15.42° N, 74.13° E</a>
+        <a href="#">Instagram</a>
+      </div>
     </div>
-    <div class="foot-col">
-      <h5>Reach us</h5>
-      <a href="mailto:stay@vaanamgoa.com">stay@vaanamgoa.com</a>
-      <a href="tel:+918000000000">+91 80000 00000</a>
-      <a href="#book">Enquire to stay</a>
+    <div class="foot-bot">
+      <span>© 2026 Vaanam Ecofarm. All rights reserved.</span>
+      <span class="pilot-tag">PILOT WEBSITE · PROJECT DHARBANDORA</span>
     </div>
-    <div class="foot-col">
-      <h5>Find us</h5>
-      <a href="#">Dharbandora, Goa</a>
-      <a href="#">15.42° N, 74.13° E</a>
-      <a href="#">Instagram</a>
-    </div>
-  </div>
-  <div class="foot-bot">
-    <span>© 2026 Vaanam Ecofarm. All rights reserved.</span>
-    <span class="pilot-tag">PILOT WEBSITE · PROJECT DHARBANDORA</span>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // sticky header
-  const hdr=document.getElementById('hdr');
-  addEventListener('scroll',()=>{hdr.classList.toggle('scrolled',scrollY>60)});
+  <script>
+    // sticky header
+    const hdr = document.getElementById('hdr');
+    addEventListener('scroll', () => { hdr.classList.toggle('scrolled', scrollY > 60) });
 
-  // reveal on scroll
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // reveal on scroll
+    const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // hero parallax
-  const fronds=document.querySelectorAll('.frond');
-  const heroBg=document.getElementById('heroBg');
-  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-    addEventListener('scroll',()=>{
-      const y=scrollY;
-      fronds.forEach(f=>{const d=parseFloat(f.dataset.depth);f.style.transform=`translateY(${y*d*1.4}px)`});
-      heroBg.style.transform=`translateY(${y*0.18}px)`;
-    },{passive:true});
-  }
+    // hero parallax
+    const fronds = document.querySelectorAll('.frond');
+    const heroBg = document.getElementById('heroBg');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      addEventListener('scroll', () => {
+        const y = scrollY;
+        fronds.forEach(f => { const d = parseFloat(f.dataset.depth); f.style.transform = `translateY(${y * d * 1.4}px)` });
+        heroBg.style.transform = `translateY(${y * 0.18}px)`;
+      }, { passive: true });
+    }
 
-  function handleEnquiry(e){
-    e.preventDefault();
-    const note=document.getElementById('fnote');
-    note.textContent='Thank you — your enquiry is noted. We\u2019ll write back within a day.';
-    note.style.color='var(--clay)';
-    e.target.querySelector('button').textContent='Enquiry sent';
-    return false;
-  }
-</script>
+    function handleEnquiry(e) {
+      e.preventDefault();
+      const note = document.getElementById('fnote');
+      note.textContent = 'Thank you — your enquiry is noted. We\u2019ll write back within a day.';
+      note.style.color = 'var(--clay)';
+      e.target.querySelector('button').textContent = 'Enquiry sent';
+      return false;
+    }
+  </script>
 </body>
+
 </html>
